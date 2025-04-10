@@ -35,7 +35,7 @@ session_start();
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="clients.php">
             <i class="bx bx-list-ul"></i>
             <span class="links_name">Commandes</span>
           </a>
