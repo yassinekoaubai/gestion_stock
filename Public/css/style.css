@@ -84,7 +84,7 @@
   width: calc(100% - 60px);
   left: 60px;
 }
-.home-section nav {
+.home-section > nav {
   display: flex;
   justify-content: space-between;
   height: 80px;
@@ -498,7 +498,7 @@ form {
 
 /* Style Table  */
 
-/* table */
+table
 table.mtable {
   width: 100%;
   border-collapse: collapse;
@@ -557,6 +557,10 @@ ol.mtable li:nth-child(even) {
   border: 5px red solid;
   height: 257mm;
   outline: 2cm #ffeaea solid;
+}
+
+a .bxs-trash-alt:before {
+  color: red;
 }
 
 @media print {

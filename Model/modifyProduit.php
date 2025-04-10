@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'connexion.php';
 
 if (
@@ -34,4 +35,5 @@ if (
 
 
 header('Location: ../vue/produit.php');
+exit()
 ?>

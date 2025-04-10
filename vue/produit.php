@@ -2,7 +2,6 @@
 include 'header.php';
 include '../Model/categorie.php';
 include '../Model/function.php';
-session_start();
 if (!empty($_GET['id'])) {
     $produits = getProduit($_GET['id']);
 }
@@ -52,38 +51,48 @@ if (!empty($_GET['id'])) {
 
         </div>
         <div class="box">
-            <table class="mtable">
-                <tr>
-                    <th>Nom produit</th>
-                    <th>Catégorie</th>
-                    <th>Prix unitaire</th>
-                    <th>Date fabrication</th>
-                    <th>Date expiration</th>
-                    <th>Action</th>
-                </tr>
-                <?php
-                $produits = getProduit();
-                if (!empty($produits) && is_array($produits)) {
-                    foreach ($produits as $key => $value) {
-                ?>
-                        <tr>
-                            <td><?= $value['nom_produit'] ?></td>
-                            <td><?= $value['nom_categorie'] ?></td>
-                            <td><?= $value['prix_unitaire'] ?></td>
-                            <td><?= date('d/m/y', strtotime($value['date_fabrication'])) ?></td>
-                            <td><?= date('d/m/y', strtotime($value['date_expiration'])) ?></td>
-                            <td><a href="?id=<?= $value['id_produit'] ?>"><i class='bx bx-edit-alt'></i></a></td>
-                        </tr>
-                <?php
+            <table id="datatable" class="display">
+                <thead>
+                    <tr>
+                        <th>Nom produit</th>
+                        <th>Catégorie</th>
+                        <th>Prix unitaire</th>
+                        <th>Date fabrication</th>
+                        <th>Date expiration</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $produits = getProduit();
+                    if (!empty($produits) && is_array($produits)) {
+                        foreach ($produits as $key => $value) {
+                    ?>
+                            <tr>
+                                <td><?= $value['nom_produit'] ?></td>
+                                <td><?= $value['nom_categorie'] ?></td>
+                                <td><?= $value['prix_unitaire'] ?></td>
+                                <td><?= date('d/m/y', strtotime($value['date_fabrication'])) ?></td>
+                                <td><?= date('d/m/y', strtotime($value['date_expiration'])) ?></td>
+                                <td><a href="?id=<?= $value['id_produit'] ?>"><i class='bx bx-edit-alt'></i><a href="../Model/deletProduit.php?id=<?= $value['id_produit'] ?>"><i class='bx bxs-trash-alt'></i></a></td>
+                            </tr>
+                    <?php
+                        }
                     }
-                }
-                ?>
+                    ?>
+                </tbody>
             </table>
         </div>
     </div>
 </div>
 </section>
-
+<script src="../Public/js/jquery.js"></script>
+<script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#datatable').dataTable();
+    });
+</script>
 <?php
 include 'footer.php';
 ?>
